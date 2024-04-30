@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    //ObjectBox
+    id("kotlin-kapt")
+    id("io.objectbox")
 }
 
 android {
@@ -66,4 +69,14 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    //navigation
+    implementation (libs.androidx.navigation.compose)
+    //viewModel
+    implementation (libs.androidx.lifecycle.viewmodel.compose)
+    //ObjectBox
+    implementation(libs.objectbox.java)
+    implementation(libs.objectbox.java.api)
+    implementation(libs.objectbox.windows)
+    annotationProcessor(libs.objectbox.processor)
 }

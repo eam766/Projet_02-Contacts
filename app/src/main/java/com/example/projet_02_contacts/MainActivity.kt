@@ -9,12 +9,14 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.projet_02_contacts.ui.CarnetScreen
+import com.example.projet_02_contacts.nav.MainNav
+import com.example.projet_02_contacts.ui.theme.EcranModifier
 import com.example.projet_02_contacts.ui.theme.Projet_02ContactsTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ObjectBox.init(this)
         setContent {
             Projet_02ContactsTheme {
                 // A surface container using the 'background' color from the theme
@@ -22,7 +24,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                   CarnetScreen()
+                    MainNav()
                 }
             }
         }
@@ -35,6 +37,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GreetingPreview() {
     Projet_02ContactsTheme {
-        CarnetScreen()
+        MainNav()
     }
 }

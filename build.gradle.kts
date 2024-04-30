@@ -3,3 +3,13 @@ plugins {
     alias(libs.plugins.androidApplication) apply false
     alias(libs.plugins.jetbrainsKotlinAndroid) apply false
 }
+
+//ObjectBox
+buildscript {
+    repositories{
+        mavenCentral()
+    }
+    dependencies{
+        classpath(libs.objectbox.gradle.plugin)
+    }
+}
