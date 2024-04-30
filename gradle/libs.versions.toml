@@ -14,6 +14,7 @@ objectboxJava = "3.7.1"
 objectboxJavaApi = "3.7.1"
 objectboxProcessor = "3.7.1"
 objectboxWindows = "3.7.1"
+navigationRuntimeKtx = "2.7.7"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -37,6 +38,7 @@ objectbox-java = { module = "io.objectbox:objectbox-java", version.ref = "object
 objectbox-java-api = { module = "io.objectbox:objectbox-java-api", version.ref = "objectboxJavaApi" }
 objectbox-processor = { module = "io.objectbox:objectbox-processor", version.ref = "objectboxProcessor" }
 objectbox-windows = { module = "io.objectbox:objectbox-windows", version.ref = "objectboxWindows" }
+androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigationRuntimeKtx" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

@@ -1,6 +1,7 @@
 package com.example.projet_02_contacts
 
 import android.content.Context
+import com.example.projet_02_contacts.modele.MyObjectBox
 import io.objectbox.BoxStore
 
 object ObjectBox {

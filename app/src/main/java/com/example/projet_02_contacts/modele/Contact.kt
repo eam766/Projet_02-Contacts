@@ -1,6 +1,13 @@
 package com.example.projet_02_contacts.modele
 
-class Contact(var nom:String,
+import io.objectbox.annotation.Entity
+import io.objectbox.annotation.Id
+
+@Entity
+class Contact(
+    @Id
+    var id: Long = 0,
+    var nom:String,
     var prenom: String,
     var entreprise: String,
     var telephone: String,

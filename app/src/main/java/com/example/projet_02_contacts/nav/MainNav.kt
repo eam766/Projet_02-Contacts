@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.projet_02_contacts.ui.theme.ContactViewModel
 import com.example.projet_02_contacts.ui.theme.EcranAjouter
 import com.example.projet_02_contacts.ui.theme.EcranContacts
 import com.example.projet_02_contacts.ui.theme.EcranDetails
@@ -29,7 +30,8 @@ fun MainNav(
                     navController.navigate("ecranDetail"){
                         launchSingleTop = true
                     }
-                }
+                },
+                contViewModel = ContactViewModel()
                 )
         }
         composable("ecranAjout"){
@@ -44,6 +46,8 @@ fun MainNav(
                         launchSingleTop = true
                     }
                 }
+                ,
+                contViewModel = ContactViewModel()
             )
         }
         composable("ecranModifier"){
@@ -77,6 +81,7 @@ fun MainNav(
                         launchSingleTop = true
                     }
                 }
+                , contViewModel = ContactViewModel()
             )
         }
     }
