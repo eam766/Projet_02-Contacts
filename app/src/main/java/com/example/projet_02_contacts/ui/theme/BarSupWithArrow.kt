@@ -24,7 +24,8 @@ import androidx.compose.ui.unit.dp
 fun BarSupWithArrow(
     modifier: Modifier = Modifier,
     title: String,
-    onArrowClick: () -> Unit
+    onArrowClick: () -> Unit,
+    contViewModel: ContactViewModel
 ){
     Row(modifier = modifier
         .fillMaxWidth()
@@ -37,7 +38,10 @@ fun BarSupWithArrow(
             Icons.Filled.ArrowBack,
             contentDescription = "",
             modifier = Modifier.size(40.dp)
-                .clickable { onArrowClick.invoke() },
+                .clickable {
+                    onArrowClick.invoke()
+                    contViewModel.resetAll()
+                           },
             tint = Color.White
         )
         Spacer(Modifier.width(15.dp))

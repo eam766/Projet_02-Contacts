@@ -42,7 +42,7 @@ fun EcranDetails(
     val contUiState = contViewModel.uiState.collectAsState()
     Scaffold(
         topBar = {
-            BarSupWithArrow(title = "Detail", onArrowClick = back)
+            BarSupWithArrow(title = "Detail", onArrowClick = back, contViewModel = contViewModel)
         }
     ) {innerPadding ->
         Column(
@@ -79,7 +79,7 @@ fun EcranDetails(
                 horizontalArrangement = Arrangement.End,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(20.dp)
+                    .padding(15.dp)
             ){
                 Button(
                     onClick = {delete()},

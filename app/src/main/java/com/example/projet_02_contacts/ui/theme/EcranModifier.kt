@@ -34,11 +34,12 @@ import androidx.compose.ui.unit.dp
 fun EcranModifier(
     create: () -> Unit,
     back:() -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    contViewModel: ContactViewModel
 ){
     Scaffold(
         topBar = {
-            BarSupWithArrow(title = "Modifier", onArrowClick = back)
+            BarSupWithArrow(title = "Modifier", onArrowClick = back, contViewModel = contViewModel)
         }
     ) { innerPadding ->
         Column(
@@ -138,7 +139,7 @@ fun EcranModifier(
                 horizontalArrangement = Arrangement.End,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(20.dp)
+                    .padding(15.dp)
             ){
                 Button(
                     onClick = {create()},

@@ -4,13 +4,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.example.projet_02_contacts.ObjectBox
 import com.example.projet_02_contacts.modele.Contact
+import com.example.projet_02_contacts.modele.Contact_
+import io.objectbox.query.QueryCondition
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class ContactViewModel : ViewModel() {
 
-    private val _uiState = MutableStateFlow(Contact("",
+    private val _uiState = MutableStateFlow(Contact(0,"",
         "", "", "", "", "", ""))
     val uiState: StateFlow<Contact> = _uiState.asStateFlow()
 
@@ -61,9 +63,24 @@ class ContactViewModel : ViewModel() {
     fun resetCourriel(){
         _courriel.value = ""
     }
+    init {
+        // Charger les données au démarrage de l'application
+        chargerDonnees()
+    }
+    private fun chargerDonnees() {
+        val query = myEntityBox.query().build()
+        _contenu_liste.value = query.find()
+        query.close()
+    }
 
+    fun resetAll(){
+        resetNom()
+        resetPrenom()
+        resetCourriel()
+        resetTelephone()
+    }
     fun add() {
-        val newContact = Contact(getNom(), getPrenom(), "", getTelephone(), "", getCourriel(), "")
+        val newContact = Contact(0,getNom(), getPrenom(), "", getTelephone(), "", getCourriel(), "")
         myEntityBox.put(newContact)
 
         //Requete
@@ -74,4 +91,6 @@ class ContactViewModel : ViewModel() {
         query.close()
         _uiState.value = newContact
     }
+
+
 }

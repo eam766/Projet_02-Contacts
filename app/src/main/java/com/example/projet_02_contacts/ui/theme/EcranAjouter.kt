@@ -1,5 +1,6 @@
 package com.example.projet_02_contacts.ui.theme
 
+import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -38,7 +39,7 @@ fun EcranAjouter(
 ){
     Scaffold(
         topBar = {
-            BarSupWithArrow(title = "Ajouter", onArrowClick = back)
+            BarSupWithArrow(title = "Ajouter", onArrowClick = back, contViewModel = contViewModel)
         }
     ) { innerPadding ->
         Column(
@@ -138,12 +139,13 @@ fun EcranAjouter(
                 horizontalArrangement = Arrangement.End,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(20.dp)
+                    .padding(15.dp)
             ){
                 Button(
                     onClick = {
                         contViewModel.add()
                         create()
+                        contViewModel.resetAll()
                               },
                     Modifier.size(90.dp),
                     shape = RoundedCornerShape(25.dp),
@@ -152,7 +154,9 @@ fun EcranAjouter(
                 }
                 Spacer(Modifier.width(20.dp))
                 Button(
-                    onClick = {/*TODO*/},
+                    onClick = {
+                        contViewModel.resetAll()
+                    },
                     Modifier.size(90.dp),
                     shape = RoundedCornerShape(25.dp),
                     colors = ButtonDefaults.buttonColors(Color.Blue)){

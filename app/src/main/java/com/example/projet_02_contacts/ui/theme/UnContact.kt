@@ -25,8 +25,10 @@ import androidx.compose.ui.unit.dp
 import com.example.projet_02_contacts.modele.Contact
 
 @Composable
-fun UnContact(contViewModel: ContactViewModel, contact: Contact, modifier: Modifier = Modifier, details: () -> Unit){
-    val contUiState = contViewModel.uiState.collectAsState()
+fun UnContact(
+    contact: Contact,
+    modifier: Modifier = Modifier,
+    details: () -> Unit){
     Card(
         shape = RoundedCornerShape(16.dp),
         elevation = CardDefaults.cardElevation(
@@ -35,7 +37,9 @@ fun UnContact(contViewModel: ContactViewModel, contact: Contact, modifier: Modif
         modifier = modifier
             .padding(10.dp)
             .fillMaxWidth()
-            .clickable { details.invoke()}
+            .clickable {
+                details.invoke()
+            }
     ){
         Row(modifier = Modifier
             .height(80.dp)
@@ -44,7 +48,7 @@ fun UnContact(contViewModel: ContactViewModel, contact: Contact, modifier: Modif
         ){
             Icon(Icons.Filled.Face, contentDescription = "", Modifier.size(70.dp))
             Spacer(Modifier.width(5.dp))
-            Text(text = "${contUiState.value.nom}, ${contUiState.value.prenom}")
+            Text(text = "${contact.nom}, ${contact.prenom}")
         }
     }
 }

@@ -13,6 +13,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -32,7 +33,18 @@ fun EcranContacts(
     Scaffold(
         topBar = {
             BarSup(title = "Mon Carnet")
-        }
+        },
+        floatingActionButton = {FloatingActionButton(
+            onClick = {add()},
+            Modifier.size(90.dp),
+            shape = RoundedCornerShape(25.dp),
+            containerColor = Color.Blue,
+            contentColor = Color.White){
+            Text(
+                text = "+",
+                style = MaterialTheme.typography.displaySmall
+            )
+        }}
     ) {innerPadding ->
         Column(
             modifier = Modifier
@@ -41,27 +53,10 @@ fun EcranContacts(
         ){
             LazyColumn {
                 items(contViewModel.getContenuListe()){
-                        item-> UnContact(contViewModel, item, modifier, details)
+                        item-> UnContact(item, modifier, details)
                 }
             }
             Spacer(modifier = Modifier.weight(1f))
-            Row(
-                horizontalArrangement = Arrangement.End,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-                ){
-                Button(
-                    onClick = {add()},
-                    Modifier.size(90.dp),
-                    shape = RoundedCornerShape(25.dp),
-                    colors = ButtonDefaults.buttonColors(Color.Blue)){
-                    Text(
-                        text = "+",
-                        style = MaterialTheme.typography.displaySmall
-                    )
-                }
-            }
         }
     }
 }

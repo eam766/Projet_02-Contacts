@@ -13,7 +13,8 @@ import com.example.projet_02_contacts.ui.theme.EcranModifier
 
 @Composable
 fun MainNav(
-    navController: NavHostController = rememberNavController()
+    navController: NavHostController = rememberNavController(),
+    contViewModel: ContactViewModel
 ) {
     NavHost(
         navController = navController,
@@ -31,7 +32,7 @@ fun MainNav(
                         launchSingleTop = true
                     }
                 },
-                contViewModel = ContactViewModel()
+                contViewModel = contViewModel
                 )
         }
         composable("ecranAjout"){
@@ -47,7 +48,7 @@ fun MainNav(
                     }
                 }
                 ,
-                contViewModel = ContactViewModel()
+                contViewModel = contViewModel
             )
         }
         composable("ecranModifier"){
@@ -61,7 +62,8 @@ fun MainNav(
                     navController.navigate("ecranDetail"){
                         launchSingleTop = true
                     }
-                }
+                },
+                contViewModel = contViewModel
             )
         }
         composable("ecranDetail"){
@@ -81,7 +83,7 @@ fun MainNav(
                         launchSingleTop = true
                     }
                 }
-                , contViewModel = ContactViewModel()
+                , contViewModel = contViewModel
             )
         }
     }
