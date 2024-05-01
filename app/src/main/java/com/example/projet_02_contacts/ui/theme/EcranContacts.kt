@@ -53,7 +53,7 @@ fun EcranContacts(
         ){
             LazyColumn {
                 items(contViewModel.getContenuListe()){
-                        item-> UnContact(item, modifier, details)
+                        item-> UnContact(item, modifier, details, contViewModel)
                 }
             }
             Spacer(modifier = Modifier.weight(1f))

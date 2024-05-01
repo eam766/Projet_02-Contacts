@@ -28,7 +28,8 @@ import com.example.projet_02_contacts.modele.Contact
 fun UnContact(
     contact: Contact,
     modifier: Modifier = Modifier,
-    details: () -> Unit){
+    details: () -> Unit,
+    contViewModel: ContactViewModel){
     Card(
         shape = RoundedCornerShape(16.dp),
         elevation = CardDefaults.cardElevation(
@@ -38,6 +39,7 @@ fun UnContact(
             .padding(10.dp)
             .fillMaxWidth()
             .clickable {
+                contViewModel.showDetails(contact)
                 details.invoke()
             }
     ){

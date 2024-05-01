@@ -82,7 +82,10 @@ fun EcranDetails(
                     .padding(15.dp)
             ){
                 Button(
-                    onClick = {delete()},
+                    onClick = {
+                        contViewModel.delete(contUiState.value.id)
+                        delete()
+                              },
                     Modifier.size(90.dp),
                     shape = RoundedCornerShape(25.dp),
                     colors = ButtonDefaults.buttonColors(Color.Blue)){
