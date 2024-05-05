@@ -25,6 +25,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -37,6 +38,7 @@ fun EcranModifier(
     modifier: Modifier = Modifier,
     contViewModel: ContactViewModel
 ){
+    val contUiState = contViewModel.uiState.collectAsState()
     Scaffold(
         topBar = {
             BarSupWithArrow(title = "Modifier", onArrowClick = back, contViewModel = contViewModel)
@@ -56,8 +58,8 @@ fun EcranModifier(
                 Spacer(Modifier.width(20.dp))
                 TextField(
                     modifier = Modifier.fillMaxWidth(),
-                    value = "",
-                    onValueChange = {/*TODO*/},
+                    value = contViewModel.getNom(),
+                    onValueChange = {contViewModel.updateNom(it)},
                     label = { Text(text = "Nom: ") },
                     trailingIcon = {
                         Icon(
@@ -65,7 +67,7 @@ fun EcranModifier(
                             contentDescription = "clear text",
                             modifier = Modifier
                                 .clickable {
-                                    /*TODO*/
+                                    contViewModel.resetNom()
                                 }
                         )
                     }
@@ -77,8 +79,8 @@ fun EcranModifier(
                 Spacer(Modifier.width(20.dp))
                 TextField(
                     modifier = Modifier.fillMaxWidth(),
-                    value = "",
-                    onValueChange = {/*TODO*/},
+                    value = contViewModel.getPrenom(),
+                    onValueChange = {contViewModel.updatePrenom(it)},
                     label = { Text(text = "Prénom: ") },
                     trailingIcon = {
                         Icon(
@@ -86,7 +88,7 @@ fun EcranModifier(
                             contentDescription = "clear text",
                             modifier = Modifier
                                 .clickable {
-                                    /*TODO*/
+                                    contViewModel.resetPrenom()
                                 }
                         )
                     }
@@ -98,8 +100,8 @@ fun EcranModifier(
                 Spacer(Modifier.width(20.dp))
                 TextField(
                     modifier = Modifier.fillMaxWidth(),
-                    value = "",
-                    onValueChange = {/*TODO*/},
+                    value = contViewModel.getTelephone(),
+                    onValueChange = {contViewModel.updateTelephone(it)},
                     label = { Text(text = "Téléphone: ") },
                     trailingIcon = {
                         Icon(
@@ -107,7 +109,7 @@ fun EcranModifier(
                             contentDescription = "clear text",
                             modifier = Modifier
                                 .clickable {
-                                    /*TODO*/
+                                    contViewModel.resetTelephone()
                                 }
                         )
                     }
@@ -119,8 +121,8 @@ fun EcranModifier(
                 Spacer(Modifier.width(20.dp))
                 TextField(
                     modifier = Modifier.fillMaxWidth(),
-                    value = "",
-                    onValueChange = {/*TODO*/},
+                    value = contViewModel.getCourriel(),
+                    onValueChange = {contViewModel.updateCourriel(it)},
                     label = { Text(text = "Courriel: ") },
                     trailingIcon = {
                         Icon(
@@ -128,7 +130,7 @@ fun EcranModifier(
                             contentDescription = "clear text",
                             modifier = Modifier
                                 .clickable {
-                                    /*TODO*/
+                                    contViewModel.resetCourriel()
                                 }
                         )
                     }
@@ -142,7 +144,11 @@ fun EcranModifier(
                     .padding(15.dp)
             ){
                 Button(
-                    onClick = {create()},
+                    onClick = {
+                        contViewModel.addAndEdit()
+                        create()
+                        contViewModel.resetAll()
+                              },
                     Modifier.size(90.dp),
                     shape = RoundedCornerShape(25.dp),
                     colors = ButtonDefaults.buttonColors(Color.Blue)){
@@ -150,7 +156,9 @@ fun EcranModifier(
                 }
                 Spacer(Modifier.width(20.dp))
                 Button(
-                    onClick = {/*TODO*/},
+                    onClick = {
+                        contViewModel.resetAll()
+                    },
                     Modifier.size(90.dp),
                     shape = RoundedCornerShape(25.dp),
                     colors = ButtonDefaults.buttonColors(Color.Blue)){

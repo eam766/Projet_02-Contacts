@@ -1,6 +1,5 @@
 package com.example.projet_02_contacts.ui.theme
 
-import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.example.projet_02_contacts.ObjectBox
@@ -19,7 +18,6 @@ class ContactViewModel : ViewModel() {
     private var _prenom = mutableStateOf("")
     private var _telephone = mutableStateOf("")
     private var _courriel = mutableStateOf("")
-    private var _id = mutableStateOf(0)
 
     private val myEntityBox = ObjectBox.store.boxFor(Contact::class.java)
     private var _contenu_liste = mutableStateOf(emptyList<Contact>())
@@ -51,9 +49,6 @@ class ContactViewModel : ViewModel() {
     fun getContenuListe():List<Contact>{
         return _contenu_liste.value
     }
-    fun getId(): Long {
-        return _id.value.toLong()
-    }
     fun resetNom(){
         _nom.value = ""
     }
@@ -71,7 +66,9 @@ class ContactViewModel : ViewModel() {
         chargerDonnees()
     }
     private fun chargerDonnees() {
-        val query = myEntityBox.query().build()
+        val query = myEntityBox
+            .query()
+            .build()
         _contenu_liste.value = query.find()
         query.close()
     }
@@ -81,8 +78,8 @@ class ContactViewModel : ViewModel() {
         resetCourriel()
         resetTelephone()
     }
-    fun add() {
-        val newContact = Contact(getId(),getNom(), getPrenom(), "", getTelephone(), "", getCourriel(), "")
+    fun addAndEdit() {
+        val newContact = Contact(0,getNom(), getPrenom(), "", getTelephone(), "", getCourriel(), "")
         myEntityBox.put(newContact)
         //Requete
         val query = myEntityBox
