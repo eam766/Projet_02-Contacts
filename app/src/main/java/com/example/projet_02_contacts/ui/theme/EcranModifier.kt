@@ -39,6 +39,11 @@ fun EcranModifier(
     contViewModel: ContactViewModel
 ){
     val contUiState = contViewModel.uiState.collectAsState()
+    contViewModel.updateId(contUiState.value.id)
+    contViewModel.updateNom(contUiState.value.nom)
+    contViewModel.updatePrenom(contUiState.value.prenom)
+    contViewModel.updateTelephone(contUiState.value.telephone)
+    contViewModel.updateCourriel(contUiState.value.email)
     Scaffold(
         topBar = {
             BarSupWithArrow(title = "Modifier", onArrowClick = back, contViewModel = contViewModel)
@@ -145,7 +150,7 @@ fun EcranModifier(
             ){
                 Button(
                     onClick = {
-                        contViewModel.addAndEdit()
+                        contViewModel.update()
                         create()
                         contViewModel.resetAll()
                               },

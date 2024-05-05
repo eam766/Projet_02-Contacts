@@ -142,7 +142,7 @@ fun EcranAjouter(
             ){
                 Button(
                     onClick = {
-                        contViewModel.addAndEdit()
+                        contViewModel.add()
                         create()
                         contViewModel.resetAll()
                               },

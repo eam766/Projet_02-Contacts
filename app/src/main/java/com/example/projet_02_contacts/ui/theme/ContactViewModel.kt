@@ -18,6 +18,7 @@ class ContactViewModel : ViewModel() {
     private var _prenom = mutableStateOf("")
     private var _telephone = mutableStateOf("")
     private var _courriel = mutableStateOf("")
+    private var _id = mutableStateOf(0L)
 
     private val myEntityBox = ObjectBox.store.boxFor(Contact::class.java)
     private var _contenu_liste = mutableStateOf(emptyList<Contact>())
@@ -34,6 +35,9 @@ class ContactViewModel : ViewModel() {
     fun updateCourriel(courriel: String){
         _courriel.value = courriel
     }
+    fun updateId(id: Long){
+        _id.value = id
+    }
     fun getNom(): String{
         return _nom.value
     }
@@ -48,6 +52,9 @@ class ContactViewModel : ViewModel() {
     }
     fun getContenuListe():List<Contact>{
         return _contenu_liste.value
+    }
+    fun getId(): Long{
+        return _id.value
     }
     fun resetNom(){
         _nom.value = ""
@@ -78,7 +85,7 @@ class ContactViewModel : ViewModel() {
         resetCourriel()
         resetTelephone()
     }
-    fun addAndEdit() {
+    fun add() {
         val newContact = Contact(0,getNom(), getPrenom(), "", getTelephone(), "", getCourriel(), "")
         myEntityBox.put(newContact)
         //Requete
@@ -96,6 +103,17 @@ class ContactViewModel : ViewModel() {
     fun delete(id: Long){
         myEntityBox.remove(id)
         chargerDonnees()
+    }
+    fun update(){
+        val editContact = Contact(getId(),getNom(), getPrenom(), "", getTelephone(), "", getCourriel(), "")
+        myEntityBox.put(editContact)
+        //Requete
+        val query = myEntityBox
+            .query()
+            .build()
+        _contenu_liste.value = query.find()
+        query.close()
+        _uiState.value = editContact
     }
 
 }
