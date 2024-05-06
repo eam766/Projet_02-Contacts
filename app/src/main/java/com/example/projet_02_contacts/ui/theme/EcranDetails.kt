@@ -1,6 +1,8 @@
 package com.example.projet_02_contacts.ui.theme
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Arrangement.Center
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -30,6 +32,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.LineBreak
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -54,14 +60,16 @@ fun EcranDetails(
             Icon(Icons.Filled.Face, contentDescription = "", Modifier.size(230.dp))
             Text(
                 text = "${contUiState.value.nom}, ${contUiState.value.prenom}",
-                style = MaterialTheme.typography.displaySmall
+                style = MaterialTheme.typography.displaySmall,
+                overflow = TextOverflow.Clip,
+                textAlign = TextAlign.Center
             )
             Text(
                 //entreprise
                 text = "Collège Ahuntsic"
             )
             Spacer(Modifier.height(30.dp))
-            Column(horizontalAlignment = Alignment.Start) {
+            Column(horizontalAlignment = Alignment.Start, modifier = Modifier.width(380.dp)) {
                 Row{
                     Icon(Icons.Filled.Phone, contentDescription = "", Modifier.size(30.dp))
                     Spacer(Modifier.width(20.dp))

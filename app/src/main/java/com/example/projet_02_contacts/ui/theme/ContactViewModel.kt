@@ -4,6 +4,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.example.projet_02_contacts.ObjectBox
 import com.example.projet_02_contacts.modele.Contact
+import com.example.projet_02_contacts.modele.Contact_
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -75,6 +76,7 @@ class ContactViewModel : ViewModel() {
     private fun chargerDonnees() {
         val query = myEntityBox
             .query()
+            .order(Contact_.nom)
             .build()
         _contenu_liste.value = query.find()
         query.close()
@@ -95,6 +97,7 @@ class ContactViewModel : ViewModel() {
         _contenu_liste.value = query.find()
         query.close()
         _uiState.value = newContact
+        chargerDonnees()
     }
     fun showDetails(contact: Contact){
         val contactDetails = myEntityBox[contact.id]
@@ -114,6 +117,7 @@ class ContactViewModel : ViewModel() {
         _contenu_liste.value = query.find()
         query.close()
         _uiState.value = editContact
+        chargerDonnees()
     }
 
 }

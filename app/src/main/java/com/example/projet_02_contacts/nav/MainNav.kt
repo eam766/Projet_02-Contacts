@@ -54,7 +54,7 @@ fun MainNav(
         composable("ecranModifier"){
             EcranModifier(
                 create = {
-                    navController.navigate("home"){
+                    navController.navigate("ecranDetail"){
                         launchSingleTop = true
                     }
                 },
