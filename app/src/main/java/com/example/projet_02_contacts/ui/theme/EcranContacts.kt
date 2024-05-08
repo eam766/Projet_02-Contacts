@@ -11,9 +11,12 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -56,7 +59,24 @@ fun EcranContacts(
                         item-> UnContact(item, modifier, details, contViewModel)
                 }
             }
-            Spacer(modifier = Modifier.weight(1f))
+            /*Spacer(modifier = Modifier.weight(1f))
+            Row(
+                horizontalArrangement = Arrangement.End,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(15.dp)
+            ) {
+                Button(
+                    onClick = { add()},
+                    Modifier.size(90.dp),
+                    shape = RoundedCornerShape(25.dp),
+                    colors = ButtonDefaults.buttonColors(Color.Blue)
+                ) {
+                    Text(
+                        text = "+",
+                        style = MaterialTheme.typography.displaySmall)
+                }
+            } */
         }
     }
 }

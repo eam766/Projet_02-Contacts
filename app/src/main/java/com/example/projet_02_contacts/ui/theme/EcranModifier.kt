@@ -11,7 +11,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Clear
@@ -58,12 +60,13 @@ fun EcranModifier(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues = innerPadding),
+                .padding(paddingValues = innerPadding)
+                .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
 
-            //Icon(Icons.Filled.Face, contentDescription = "", Modifier.size(230.dp))
+            Icon(Icons.Filled.Face, contentDescription = "", Modifier.size(230.dp))
             Row (modifier = Modifier.padding(10.dp),
                 verticalAlignment = Alignment.CenterVertically){
                 Icon(Icons.Filled.Person, contentDescription = "", Modifier.size(30.dp))
