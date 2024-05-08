@@ -1,5 +1,6 @@
 package com.example.projet_02_contacts.ui.theme
 
+import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.example.projet_02_contacts.ObjectBox
@@ -19,7 +20,10 @@ class ContactViewModel : ViewModel() {
     private var _prenom = mutableStateOf("")
     private var _telephone = mutableStateOf("")
     private var _courriel = mutableStateOf("")
-    private var _id = mutableStateOf(0L)
+    private var _mobile = mutableStateOf("")
+    private var _adresse = mutableStateOf("")
+    private var _entreprise = mutableStateOf("")
+    private var _id = mutableLongStateOf(0L)
 
     private val myEntityBox = ObjectBox.store.boxFor(Contact::class.java)
     private var _contenu_liste = mutableStateOf(emptyList<Contact>())
@@ -39,6 +43,15 @@ class ContactViewModel : ViewModel() {
     fun updateId(id: Long){
         _id.value = id
     }
+    fun updateMobile(mobile: String){
+        _mobile.value = mobile
+    }
+    fun updateAdresse(adresse: String){
+        _adresse.value = adresse
+    }
+    fun updateEntreprise(entreprise: String){
+        _entreprise.value = entreprise
+    }
     fun getNom(): String{
         return _nom.value
     }
@@ -57,6 +70,15 @@ class ContactViewModel : ViewModel() {
     fun getId(): Long{
         return _id.value
     }
+    fun getMobile(): String{
+        return _mobile.value
+    }
+    fun getAdresse(): String{
+        return _adresse.value
+    }
+    fun getEntreprise(): String{
+        return _entreprise.value
+    }
     fun resetNom(){
         _nom.value = ""
     }
@@ -68,6 +90,15 @@ class ContactViewModel : ViewModel() {
     }
     fun resetCourriel(){
         _courriel.value = ""
+    }
+    fun resetMobile(){
+        _mobile.value = ""
+    }
+    fun resetAdresse(){
+        _adresse.value = ""
+    }
+    fun resetEntreprise(){
+        _entreprise.value = ""
     }
     init {
         // Charger les données au démarrage de l'application
@@ -86,9 +117,12 @@ class ContactViewModel : ViewModel() {
         resetPrenom()
         resetCourriel()
         resetTelephone()
+        resetMobile()
+        resetAdresse()
+        resetEntreprise()
     }
     fun add() {
-        val newContact = Contact(0,getNom(), getPrenom(), "", getTelephone(), "", getCourriel(), "")
+        val newContact = Contact(0,getNom(), getPrenom(), getEntreprise(), getTelephone(), getMobile(), getCourriel(), getAdresse())
         myEntityBox.put(newContact)
         //Requete
         val query = myEntityBox
@@ -108,7 +142,7 @@ class ContactViewModel : ViewModel() {
         chargerDonnees()
     }
     fun update(){
-        val editContact = Contact(getId(),getNom(), getPrenom(), "", getTelephone(), "", getCourriel(), "")
+        val editContact = Contact(getId(),getNom(), getPrenom(), getEntreprise(), getTelephone(), getMobile(), getCourriel(), getAdresse())
         myEntityBox.put(editContact)
         //Requete
         val query = myEntityBox

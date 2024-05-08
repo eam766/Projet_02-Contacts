@@ -20,6 +20,7 @@ import androidx.compose.material.icons.filled.Create
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Face
+import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -65,8 +66,7 @@ fun EcranDetails(
                 textAlign = TextAlign.Center
             )
             Text(
-                //entreprise
-                text = "Collège Ahuntsic"
+                text = contUiState.value.entreprise
             )
             Spacer(Modifier.height(30.dp))
             Column(horizontalAlignment = Alignment.Start, modifier = Modifier.width(380.dp)) {
@@ -76,11 +76,24 @@ fun EcranDetails(
                     Text(text = contUiState.value.telephone)
                 }
                 Spacer(Modifier.height(15.dp))
-                Row{
+                Row(verticalAlignment = Alignment.CenterVertically){
+                    Icon(Icons.Filled.Phone, contentDescription = "", Modifier.size(30.dp))
+                    Spacer(Modifier.width(20.dp))
+                    Text(text = contUiState.value.mobile)
+                }
+                Spacer(Modifier.height(15.dp))
+                Row(verticalAlignment = Alignment.CenterVertically){
                     Icon(Icons.Filled.Email, contentDescription = "", Modifier.size(30.dp))
                     Spacer(Modifier.width(20.dp))
                     Text(text = contUiState.value.email)
                 }
+                Spacer(Modifier.height(15.dp))
+                Row(verticalAlignment = Alignment.CenterVertically){
+                    Icon(Icons.Filled.LocationOn, contentDescription = "", Modifier.size(30.dp))
+                    Spacer(Modifier.width(20.dp))
+                    Text(text = contUiState.value.adresse)
+                }
+                Spacer(Modifier.height(15.dp))
             }
             Spacer(modifier = Modifier.weight(1f))
             Row(
