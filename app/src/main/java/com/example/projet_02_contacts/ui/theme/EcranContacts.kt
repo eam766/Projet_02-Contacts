@@ -59,24 +59,6 @@ fun EcranContacts(
                         item-> UnContact(item, modifier, details, contViewModel)
                 }
             }
-            /*Spacer(modifier = Modifier.weight(1f))
-            Row(
-                horizontalArrangement = Arrangement.End,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(15.dp)
-            ) {
-                Button(
-                    onClick = { add()},
-                    Modifier.size(90.dp),
-                    shape = RoundedCornerShape(25.dp),
-                    colors = ButtonDefaults.buttonColors(Color.Blue)
-                ) {
-                    Text(
-                        text = "+",
-                        style = MaterialTheme.typography.displaySmall)
-                }
-            } */
         }
     }
 }
