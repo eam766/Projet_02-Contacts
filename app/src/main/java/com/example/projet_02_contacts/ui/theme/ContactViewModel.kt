@@ -41,7 +41,7 @@ class ContactViewModel : ViewModel() {
         _courriel.value = courriel
     }
     fun updateId(id: Long){
-        _id.value = id
+        _id.longValue = id
     }
     fun updateMobile(mobile: String){
         _mobile.value = mobile
@@ -100,10 +100,11 @@ class ContactViewModel : ViewModel() {
     fun resetEntreprise(){
         _entreprise.value = ""
     }
+    // Charger les données au démarrage de l'application
     init {
-        // Charger les données au démarrage de l'application
         chargerDonnees()
     }
+    //Récupérer toutes les données de la base de données
     private fun chargerDonnees() {
         val query = myEntityBox
             .query()
@@ -112,6 +113,7 @@ class ContactViewModel : ViewModel() {
         _contenu_liste.value = query.find()
         query.close()
     }
+    //Supprimer les données de tout les champs
     fun resetAll(){
         resetNom()
         resetPrenom()
@@ -121,6 +123,7 @@ class ContactViewModel : ViewModel() {
         resetAdresse()
         resetEntreprise()
     }
+    //Ajouter un contact
     fun add() {
         val newContact = Contact(0,getNom(), getPrenom(), getEntreprise(), getTelephone(), getMobile(), getCourriel(), getAdresse())
         myEntityBox.put(newContact)
@@ -133,14 +136,17 @@ class ContactViewModel : ViewModel() {
         _uiState.value = newContact
         chargerDonnees()
     }
+    //Montrer les détails d'un contact
     fun showDetails(contact: Contact){
         val contactDetails = myEntityBox[contact.id]
         _uiState.value = contactDetails
     }
+    //Supprimer un contact
     fun delete(id: Long){
         myEntityBox.remove(id)
         chargerDonnees()
     }
+    //Mettre à jour un contact
     fun update(){
         val editContact = Contact(getId(),getNom(), getPrenom(), getEntreprise(), getTelephone(), getMobile(), getCourriel(), getAdresse())
         myEntityBox.put(editContact)

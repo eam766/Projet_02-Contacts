@@ -37,7 +37,8 @@ fun EcranContacts(
         topBar = {
             BarSup(title = "Mon Carnet")
         },
-        floatingActionButton = {FloatingActionButton(
+        floatingActionButton = {
+            FloatingActionButton(
             onClick = {add()},
             Modifier.size(90.dp),
             shape = RoundedCornerShape(25.dp),

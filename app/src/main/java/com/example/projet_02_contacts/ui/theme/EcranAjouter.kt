@@ -39,7 +39,7 @@ import androidx.compose.ui.unit.dp
 fun EcranAjouter(
     create: () -> Unit,
     back:() -> Unit,
-   contViewModel: ContactViewModel
+    contViewModel: ContactViewModel
 ){
     Scaffold(
         topBar = {

@@ -44,6 +44,7 @@ fun EcranModifier(
     contViewModel: ContactViewModel
 ){
     val contUiState = contViewModel.uiState.collectAsState()
+    //Récupérer les données d'un contact et les mettre à jour dans le ContactViewModel
     contViewModel.updateId(contUiState.value.id)
     contViewModel.updateNom(contUiState.value.nom)
     contViewModel.updatePrenom(contUiState.value.prenom)
