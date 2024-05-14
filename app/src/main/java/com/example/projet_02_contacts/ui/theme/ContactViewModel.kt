@@ -9,6 +9,7 @@ import com.example.projet_02_contacts.modele.Contact_
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import java.util.regex.Pattern
 
 class ContactViewModel : ViewModel() {
 
@@ -52,6 +53,7 @@ class ContactViewModel : ViewModel() {
     fun updateEntreprise(entreprise: String){
         _entreprise.value = entreprise
     }
+
     fun getNom(): String{
         return _nom.value
     }
@@ -68,7 +70,7 @@ class ContactViewModel : ViewModel() {
         return _contenu_liste.value
     }
     fun getId(): Long{
-        return _id.value
+        return _id.longValue
     }
     fun getMobile(): String{
         return _mobile.value
@@ -79,6 +81,7 @@ class ContactViewModel : ViewModel() {
     fun getEntreprise(): String{
         return _entreprise.value
     }
+
     fun resetNom(){
         _nom.value = ""
     }
@@ -100,6 +103,7 @@ class ContactViewModel : ViewModel() {
     fun resetEntreprise(){
         _entreprise.value = ""
     }
+
     // Charger les données au démarrage de l'application
     init {
         chargerDonnees()
@@ -133,13 +137,12 @@ class ContactViewModel : ViewModel() {
             .build()
         _contenu_liste.value = query.find()
         query.close()
-        _uiState.value = newContact
         chargerDonnees()
     }
     //Montrer les détails d'un contact
     fun showDetails(contact: Contact){
-        val contactDetails = myEntityBox[contact.id]
-        _uiState.value = contactDetails
+       // val contactDetails = myEntityBox[contact.id]
+        _uiState.value = contact
     }
     //Supprimer un contact
     fun delete(id: Long){
