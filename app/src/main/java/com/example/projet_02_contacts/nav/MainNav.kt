@@ -14,7 +14,7 @@ import com.example.projet_02_contacts.ui.theme.EcranModifier
 @Composable
 fun MainNav(
     navController: NavHostController = rememberNavController(),
-    contViewModel: ContactViewModel
+    contViewModel: ContactViewModel = ContactViewModel()
 ) {
     NavHost(
         navController = navController,

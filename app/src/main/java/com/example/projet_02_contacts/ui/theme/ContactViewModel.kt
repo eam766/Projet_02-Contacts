@@ -131,17 +131,10 @@ class ContactViewModel : ViewModel() {
     fun add() {
         val newContact = Contact(0,getNom(), getPrenom(), getEntreprise(), getTelephone(), getMobile(), getCourriel(), getAdresse())
         myEntityBox.put(newContact)
-        //Requete
-        val query = myEntityBox
-            .query()
-            .build()
-        _contenu_liste.value = query.find()
-        query.close()
         chargerDonnees()
     }
     //Montrer les détails d'un contact
     fun showDetails(contact: Contact){
-       // val contactDetails = myEntityBox[contact.id]
         _uiState.value = contact
     }
     //Supprimer un contact
@@ -153,12 +146,6 @@ class ContactViewModel : ViewModel() {
     fun update(){
         val editContact = Contact(getId(),getNom(), getPrenom(), getEntreprise(), getTelephone(), getMobile(), getCourriel(), getAdresse())
         myEntityBox.put(editContact)
-        //Requete
-        val query = myEntityBox
-            .query()
-            .build()
-        _contenu_liste.value = query.find()
-        query.close()
         _uiState.value = editContact
         chargerDonnees()
     }
